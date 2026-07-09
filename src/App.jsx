@@ -1,12 +1,9 @@
-import './App.css'
-import React from 'react'
+import './styles/App.css'
+import NavBar from './components/NavBar'
 
 function App(){
   return (
-    <div>
-      <h1>Job Posting Platform</h1>
-    </div>
+      <NavBar/>
   )
-
 }
   export default App
