@@ -1,6 +1,6 @@
 .job-card {
-  background: white;
-  border: 1px solid #E5E7EB;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   overflow: hidden;
   transition: 0.3s ease;
@@ -10,15 +10,24 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+[data-theme="dark"] .job-card {
+  background: #1F2937;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
 .job-card:hover {
-  border-color: #4F46E5;
+  border-color: var(--primary-color);
   box-shadow: 0 8px 16px rgba(79, 70, 229, 0.1);
   transform: translateY(-4px);
 }
 
+[data-theme="dark"] .job-card:hover {
+  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
+}
+
 .card-header {
   padding: 1.5rem;
-  border-bottom: 1px solid #F3F4F6;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .company-logo {
@@ -29,7 +38,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #F3F4F6;
+  background: var(--input-bg);
 }
 
 .company-logo img {
@@ -41,7 +50,7 @@
 .logo-placeholder {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #4F46E5;
+  color: var(--primary-color);
 }
 
 .card-content {
@@ -54,14 +63,14 @@
 .job-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1F2937;
+  color: var(--text-primary);
   margin: 0 0 0.5rem 0;
   line-height: 1.4;
 }
 
 .company-name {
   font-size: 0.95rem;
-  color: #6B7280;
+  color: var(--text-secondary);
   margin: 0 0 1rem 0;
   font-weight: 500;
 }
@@ -78,11 +87,11 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-  color: #374151;
+  color: var(--text-secondary);
 }
 
 .meta-icon {
-  color: #9CA3AF;
+  color: var(--text-tertiary);
   font-size: 1rem;
 }
 
@@ -95,16 +104,22 @@
 
 .skill-tag {
   background: #F0F4FF;
-  color: #4F46E5;
+  color: var(--primary-color);
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 500;
   border: 1px solid #E0E7FF;
+  transition: 0.3s ease;
+}
+
+[data-theme="dark"] .skill-tag {
+  background: rgba(79, 70, 229, 0.15);
+  border-color: rgba(79, 70, 229, 0.3);
 }
 
 .view-details-btn {
-  background: #4F46E5;
+  background: var(--primary-color);
   color: white;
   border: none;
   padding: 0.75rem 1rem;
@@ -121,7 +136,7 @@
 }
 
 .view-details-btn:hover {
-  background: #4338CA;
+  background: var(--primary-dark);
   transform: translateY(-2px);
 }
 

@@ -6,12 +6,19 @@
     height: 70px;
     padding: 0 4rem;
 
-    background: #fff;
-    border-bottom: 1px solid #ececec;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
 
     position: sticky;
     top: 0;
     z-index: 999;
+    transition: 0.3s ease;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .navbar {
+    background: #1F2937;
+    border-bottom-color: #374151;
 }
 
 /* ---------------- LOGO ---------------- */
@@ -31,11 +38,17 @@
 .nav-logo h2 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #222;
+    color: var(--text-primary);
+    transition: 0.3s ease;
 }
 
 .nav-logo span {
     color: #4F46E5;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .nav-logo h2 {
+    color: #F3F4F6;
 }
 
 /* ---------------- LINKS ---------------- */
@@ -48,15 +61,26 @@
 
 .nav-links a {
     text-decoration: none;
-    color: #555;
+    color: var(--text-secondary);
 
     font-size: .95rem;
     font-weight: 500;
 
     transition: .3s ease;
+    cursor: pointer;
 }
 
 .nav-links a:hover {
+    color: #4F46E5;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .nav-links a {
+    color: #D1D5DB;
+}
+
+/* Dark Mode Hover */
+[data-theme="dark"] .nav-links a:hover {
     color: #4F46E5;
 }
 
@@ -79,51 +103,52 @@
     align-items: center;
 
     border: none;
-    border-radius: 50%;
+    border-radius: 8px;
 
-    background: #f5f5f5;
+    background: #F3F4F6;
+    color: #1F2937;
 
     cursor: pointer;
 
-    transition: .3s;
+    transition: 0.3s ease;
 }
-
-
 
 .theme-btn:hover {
-    background: #ececec;
+    background: #E5E7EB;
+    transform: scale(1.1);
 }
 
-
-
-.post-btn {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-
-    padding: 10px 18px;
-    white-space: nowrap;
-    border: none;
-    border-radius: 10px;
-
-    background: #4F46E5;
-    color: white;
-    font-size: .9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: .3s ease;
+.theme-btn:active {
+    transform: scale(0.95);
 }
 
+/* Dark Mode */
+[data-theme="dark"] .theme-btn {
+    background: #374151;
+    color: #F3F4F6;
+}
+
+[data-theme="dark"] .theme-btn:hover {
+    background: #4B5563;
+}
 
 .svg {
     font-size: 1.2rem;
 }
 
-.post-btn:hover {
-    background: #4338CA;
-    transform: translateY(-2px);
-}
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 1.5rem;
+        height: 60px;
+    }
 
-.post-btn:active {
-    transform: translateY(0);
+    .nav-logo h2 {
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
 }

@@ -1,8 +1,20 @@
 import './styles/NavBar.css'
 import { HiBriefcase } from "react-icons/hi2";
-import { IoMoonOutline } from "react-icons/io5";
-import { CgAdd } from "react-icons/cg";
-function NavBar() {
+import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
+
+function NavBar({ isDarkMode, onThemeToggle, onBrowseJobs }) {
+    const handleBrowseClick = (event) => {
+      event.preventDefault()
+      if (onBrowseJobs) {
+        onBrowseJobs()
+      } else {
+        const jobListSection = document.querySelector('.job-list-section')
+        if (jobListSection) {
+          jobListSection.scrollIntoView({ behavior: 'smooth' })
+        }
+      }
+    }
+
     return (
         <header className="navbar">
             <div className="nav-logo">
@@ -14,20 +26,18 @@ function NavBar() {
 
             <div className="nav-links">
                 <a href="#home">Home</a>
-                <a href="#jobs">Browse Jobs</a>
+                <a href="#jobs" onClick={handleBrowseClick}>Browse Jobs</a>
                 <a href="#about">About Us</a>
             </div>
 
             <div className="nav-actions">
-                <button className="theme-btn">
-                    <IoMoonOutline className='svg' size={22}/>
+                <button className="theme-btn" onClick={onThemeToggle} title="Toggle Theme">
+                    {isDarkMode ? (
+                        <IoSunnyOutline className='svg' size={22}/>
+                    ) : (
+                        <IoMoonOutline className='svg' size={22}/>
+                    )}
                 </button>
-
-                <button className="post-btn">
-                    <CgAdd className='svg'  size={20}/>
-                    <span>Post a Job</span>
-                </button>
-
             </div>
         </header>
     )

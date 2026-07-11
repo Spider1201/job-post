@@ -8,7 +8,12 @@
     padding:4rem;
     gap:4rem;
 
-    background:#F9FAFB;
+    background: var(--bg-secondary);
+    transition: 0.3s ease;
+}
+
+[data-theme="dark"] .hero-section {
+    background: #111827;
 }
 
 /* Left Side */
@@ -23,7 +28,8 @@
 
     line-height:1.2;
 
-    color:#222;
+    color: var(--text-primary);
+    transition: 0.3s ease;
 
     margin-bottom:1.5rem;
 }
@@ -38,7 +44,8 @@
     font-size:1.1rem;
     line-height:1.8;
 
-    color:#6B7280;
+    color: var(--text-secondary);
+    transition: 0.3s ease;
 
     margin-bottom:2.5rem;
 }
@@ -66,24 +73,31 @@
 }
 
 .browse-btn{
-    background:#4F46E5;
+    background: var(--primary-color);
     color:white;
 }
 
 .browse-btn:hover{
-    background:#4338CA;
+    background: var(--primary-dark);
     transform:translateY(-2px);
 }
 
 .post-btn{
-    background:white;
-    color:#4F46E5;
+    background: var(--bg-primary);
+    color: var(--primary-color);
 
-    border:2px solid #4F46E5;
+    border:2px solid var(--primary-color);
+    transition: 0.3s ease;
+}
+
+[data-theme="dark"] .post-btn {
+    background: #1F2937;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .post-btn:hover{
-    background:#4F46E5;
+    background: var(--primary-color);
     color:white;
 }
 

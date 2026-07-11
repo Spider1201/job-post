@@ -1,7 +1,19 @@
 import './styles/HeroSection.css';
 import heroImage from '../assets/images/hero-image.png';
 
-export default function HeroSection() {
+export default function HeroSection({ onPostJob, onBrowseJobs }) {
+  const handleBrowseJobs = () => {
+    if (onBrowseJobs) {
+      onBrowseJobs()
+      return
+    }
+
+    const jobListSection = document.querySelector('.job-list-section');
+    if (jobListSection) {
+      jobListSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   return (
     <section className="hero-section">
 
@@ -18,11 +30,11 @@ export default function HeroSection() {
         </p>
 
         <div className="hero-buttons">
-          <button className="browse-btn">
+          <button className="browse-btn" onClick={handleBrowseJobs}>
             Browse Jobs
           </button>
 
-          <button className="post-btn">
+          <button className="post-btn" onClick={onPostJob}>
             Post a Job
           </button>
         </div>
