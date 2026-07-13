@@ -128,6 +128,9 @@ function JobList({ searchText, refreshTrigger, onClearSearch }) {
   const visibleJobs = allJobs.slice(0, visibleCount)
   const canLoadMore = visibleCount < allJobs.length
   const isSearching = Boolean(searchText?.trim())
+  const emptyMessage = isSearching
+    ? `No jobs matched "${searchText.trim()}". Try another keyword.`
+    : 'No jobs found. Check back soon for new opportunities!'
 
   const loadMore = () => {
     setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, allJobs.length))
@@ -144,7 +147,7 @@ function JobList({ searchText, refreshTrigger, onClearSearch }) {
         {isLoading && <LoadingSpinner />}
 
         {!isLoading && allJobs.length === 0 && (
-          <EmptyState message="No jobs found. Check back soon for new opportunities!" />
+          <EmptyState message={emptyMessage} />
         )}
 
         {!isLoading && allJobs.length > 0 && (
