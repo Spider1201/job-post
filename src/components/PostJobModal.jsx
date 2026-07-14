@@ -10,8 +10,11 @@ function PostJobModal({ isOpen, onClose, onJobPosted }) {
     location: '',
     salary: '',
     experience: '',
-    jobType: 'Full Time',
+    employmentType: 'Full Time',
+    workMode: 'Remote',
     description: '',
+    profile: '',
+    applicationLink: '',
     skills: []
   })
 
@@ -46,9 +49,18 @@ function PostJobModal({ isOpen, onClose, onJobPosted }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Validate required fields
-    if (!formData.title || !formData.company || !formData.location || !formData.salary || !formData.experience || !formData.description) {
+    if (
+      !formData.title ||
+      !formData.company ||
+      !formData.location ||
+      !formData.salary ||
+      !formData.experience ||
+      !formData.description ||
+      !formData.profile ||
+      !formData.applicationLink
+    ) {
       setError('Please fill in all required fields.')
       return
     }
@@ -64,9 +76,10 @@ function PostJobModal({ isOpen, onClose, onJobPosted }) {
     try {
       const newJob = await postJob({
         ...formData,
+        experience: Number(formData.experience),
         skills: formData.skills
       })
-      
+
       // Reset form
       setFormData({
         title: '',
@@ -74,16 +87,19 @@ function PostJobModal({ isOpen, onClose, onJobPosted }) {
         location: '',
         salary: '',
         experience: '',
-        jobType: 'Full Time',
+        employmentType: 'Full Time',
+        workMode: 'Remote',
         description: '',
+        profile: '',
+        applicationLink: '',
         skills: []
       })
-      
+
       // Call parent callback to refresh jobs list
       if (onJobPosted) {
         onJobPosted(newJob)
       }
-      
+
       onClose()
     } catch (err) {
       setError(err.message || 'Failed to post job. Please try again.')
@@ -159,9 +175,9 @@ function PostJobModal({ isOpen, onClose, onJobPosted }) {
             <div className="form-group">
               <label>Experience Required *</label>
               <input
-                type="text"
+                type="number"
                 name="experience"
-                placeholder="e.g., 2-3 Years"
+                placeholder="e.g., 2"
                 value={formData.experience}
                 onChange={handleChange}
                 required
@@ -171,7 +187,11 @@ function PostJobModal({ isOpen, onClose, onJobPosted }) {
 
           <div className="form-group">
             <label>Employment Type *</label>
-            <select name="jobType" value={formData.jobType} onChange={handleChange}>
+            <select
+              name="employmentType"
+              value={formData.employmentType}
+              onChange={handleChange}
+            >
               <option>Full Time</option>
               <option>Part Time</option>
               <option>Contract</option>
@@ -187,6 +207,45 @@ function PostJobModal({ isOpen, onClose, onJobPosted }) {
               value={formData.description}
               onChange={handleChange}
               rows="5"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Work Mode *</label>
+
+            <select
+              name="workMode"
+              value={formData.workMode}
+              onChange={handleChange}
+            >
+              <option>Remote</option>
+              <option>Hybrid</option>
+              <option>Onsite</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Ideal Candidate *</label>
+
+            <textarea
+              name="profile"
+              placeholder="Describe the ideal candidate..."
+              value={formData.profile}
+              onChange={handleChange}
+              rows="4"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Application Link *</label>
+
+            <input
+              type="text"
+              name="applicationLink"
+              placeholder="https://company.com/careers/job-id or hr@company.com"
+              value={formData.applicationLink}
+              onChange={handleChange}
               required
             />
           </div>

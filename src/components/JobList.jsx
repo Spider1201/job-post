@@ -17,106 +17,18 @@ function JobList({ searchText, refreshTrigger, onClearSearch }) {
     const fetchJobs = async () => {
       setIsLoading(true)
       setError(null)
+
       try {
         const data = searchText?.trim()
           ? await searchJobs(searchText.trim())
           : await getAllJobs()
+
         setAllJobs(Array.isArray(data) ? data : [])
         setVisibleCount(PAGE_SIZE)
       } catch (err) {
         console.error('Error fetching jobs:', err)
         setError(err.message || 'Failed to load jobs')
-        // Fallback to dummy data on error for now
-        setAllJobs([
-          {
-            id: 1,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Interswitch',
-            title: 'Backend Java Developer',
-            company: 'Interswitch Group',
-            location: 'Lagos',
-            jobType: 'Full Time',
-            salary: '₦2.5M - ₦4M',
-            experience: '3-5 Years',
-            skills: ['Java', 'Spring Boot', 'PostgreSQL', 'MongoDB']
-          },
-          {
-            id: 2,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Flutterwave',
-            title: 'Frontend React Developer',
-            company: 'Flutterwave',
-            location: 'Lagos',
-            jobType: 'Full Time',
-            salary: '₦2M - ₦3.5M',
-            experience: '2-3 Years',
-            skills: ['React', 'TypeScript', 'CSS', 'Redux']
-          },
-          {
-            id: 3,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Paystack',
-            title: 'Full Stack Developer',
-            company: 'Paystack',
-            location: 'Lagos',
-            jobType: 'Full Time',
-            salary: '₦3M - ₦4.5M',
-            experience: '3-4 Years',
-            skills: ['Node.js', 'React', 'MongoDB', 'AWS']
-          },
-          {
-            id: 4,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Andela',
-            title: 'Product Manager',
-            company: 'Andela',
-            location: 'Remote (Lagos-based)',
-            jobType: 'Full Time',
-            salary: '₦3.5M - ₦5M',
-            experience: '5+ Years',
-            skills: ['Product Strategy', 'Analytics', 'Leadership', 'UX']
-          },
-          {
-            id: 5,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Jumia',
-            title: 'DevOps Engineer',
-            company: 'Jumia Tech',
-            location: 'Lagos',
-            jobType: 'Full Time',
-            salary: '₦2.8M - ₦4.2M',
-            experience: '4-6 Years',
-            skills: ['Docker', 'Kubernetes', 'CI/CD', 'AWS', 'Linux']
-          },
-          {
-            id: 6,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Remitly',
-            title: 'UI/UX Designer',
-            company: 'Remitly Nigeria',
-            location: 'Lagos',
-            jobType: 'Full Time',
-            salary: '₦1.8M - ₦2.8M',
-            experience: '2-3 Years',
-            skills: ['Figma', 'UI Design', 'Prototyping', 'User Research']
-          },
-          {
-            id: 7,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Wema',
-            title: 'Senior Backend Developer',
-            company: 'Wema Bank',
-            location: 'Lagos',
-            jobType: 'Full Time',
-            salary: '₦3.5M - ₦5M',
-            experience: '5+ Years',
-            skills: ['Python', 'Django', 'PostgreSQL', 'Redis', 'Docker']
-          },
-          {
-            id: 8,
-            logo: 'https://api.dicebear.com/7.x/initials/svg?seed=Housecorp',
-            title: 'Data Analyst',
-            company: 'HouseCorp',
-            location: 'Abuja',
-            jobType: 'Full Time',
-            salary: '₦1.5M - ₦2.5M',
-            experience: '1-2 Years',
-            skills: ['Python', 'SQL', 'Tableau', 'Excel', 'Statistics']
-          }
-        ])
+        setAllJobs([])
       } finally {
         setIsLoading(false)
       }
@@ -128,6 +40,7 @@ function JobList({ searchText, refreshTrigger, onClearSearch }) {
   const visibleJobs = allJobs.slice(0, visibleCount)
   const canLoadMore = visibleCount < allJobs.length
   const isSearching = Boolean(searchText?.trim())
+
   const emptyMessage = isSearching
     ? `No jobs matched "${searchText.trim()}". Try another keyword.`
     : 'No jobs found. Check back soon for new opportunities!'
@@ -155,27 +68,29 @@ function JobList({ searchText, refreshTrigger, onClearSearch }) {
             <div className="job-list">
               {visibleJobs.map((job) => (
                 <JobCard
-                  key={job.id}
-                  logo={job.logo}
-                  title={job.title}
-                  company={job.company}
-                  location={job.location}
-                  jobType={job.jobType}
-                  salary={job.salary}
-                  experience={job.experience}
-                  skills={job.skills}
+                  key={job.id || job._id}
+                  job={job}
                 />
               ))}
             </div>
 
             <div className="job-list-actions">
               {isSearching && (
-                <button className="view-all-btn" type="button" onClick={onClearSearch}>
+                <button
+                  className="view-all-btn"
+                  type="button"
+                  onClick={onClearSearch}
+                >
                   Clear Search
                 </button>
               )}
+
               {canLoadMore && (
-                <button className="view-all-btn" type="button" onClick={loadMore}>
+                <button
+                  className="view-all-btn"
+                  type="button"
+                  onClick={loadMore}
+                >
                   Load More Jobs
                 </button>
               )}
