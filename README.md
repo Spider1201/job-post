@@ -1,16 +1,117 @@
-# React + Vite
+# 💼 JobPost
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+JobPost is a modern React application that allows users to browse available jobs, search through job listings, and publish new job opportunities.
 
-Currently, two official plugins are available:
+## 🌍 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://jobposting-app.netlify.app/
 
-## React Compiler
+Backend API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+https://job-post-api.onrender.com
 
-## Expanding the ESLint configuration
+Swagger
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+https://job-post-api.onrender.com/swagger-ui/index.html
+
+---
+
+## ✨ Features
+
+- Browse available jobs
+- Search job listings
+- Publish new job opportunities
+- Responsive interface
+- REST API integration using Axios
+
+---
+
+## 🛠 Tech Stack
+
+- React
+- Axios
+- CSS
+- Spring Boot Backend
+- MongoDB Atlas
+- Netlify
+- Render
+
+---
+
+## 📁 Project Structure
+
+```text
+src
+├── components
+├── pages
+├── services
+├── App.jsx
+├── main.jsx
+└── assets
+```
+
+---
+
+## 🚀 Getting Started
+
+Clone the repository
+
+```bash
+git clone https://github.com/Spider1201/job-post.git
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌐 Backend Configuration
+
+Update your API URL
+
+```javascript
+https://job-post-api.onrender.com
+```
+
+---
+
+## 📸 Screenshots
+
+Add screenshots here.
+
+Example
+
+- Home Page
+- Job Listing
+- Search Results
+- Add Job
+
+---
+
+## 🔮 Future Improvements
+
+- User Authentication
+- Company Profiles
+- Job Applications
+- Saved Jobs
+- Pagination
+- Advanced Filters
+
+---
+
+## 👨‍💻 Author
+
+**Onatade Abdulmajeed**
+
+GitHub
+
+https://github.com/Spider1201
